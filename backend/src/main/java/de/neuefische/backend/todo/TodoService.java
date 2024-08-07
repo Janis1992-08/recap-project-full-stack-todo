@@ -1,45 +1,40 @@
 package de.neuefische.backend.todo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
-class TodoService {
+public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    TodoService(TodoRepository todoRepository) {
+    @Autowired
+    public TodoService(TodoRepository todoRepository) {
         this.todoRepository = todoRepository;
     }
 
-    List<Todo> getAll() {
-        return todoRepository.getAll();
+    public List<Todo> getAll() {
+        return todoRepository.findAll();
     }
 
     public Todo save(Todo todo) {
         String id = UUID.randomUUID().toString();
-
         Todo todoToSave = todo.withId(id);
-
         return todoRepository.save(todoToSave);
     }
 
     public Todo getById(String id) {
-        return todoRepository.getById(id);
+        return todoRepository.findById(id).orElse(null);
     }
 
     public Todo update(Todo todo) {
-        return todoRepository.update(todo);
+        return todoRepository.save(todo);
     }
 
     public void delete(String id) {
-        todoRepository.delete(id);
+        todoRepository.deleteById(id);
     }
 }
-
-
-
-
-

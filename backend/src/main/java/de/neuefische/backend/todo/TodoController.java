@@ -3,10 +3,9 @@ package de.neuefische.backend.todo;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.Collections;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:5173")
+
+//@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/todo")
 class TodoController {
